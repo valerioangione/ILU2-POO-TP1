@@ -171,11 +171,19 @@ public class Village {
 	}
 
 	public String afficherMarche() {
-		StringBuilder chaine= new StringBuilder();
+		StringBuilder chaine = new StringBuilder();
 		int vide = 0;
-		for (int i=0; i<marche.etals.length;i++) {
-			if (marche.etals[i].isEtalOccupe())
+		chaine.append("Le marché du village " + getNom() + "possède plusieurs étals :\n");
+		for (int i = 0; i < marche.etals.length; i++) {
+			if (marche.etals[i].isEtalOccupe()) {
+				chaine.append(marche.etals[i].getVendeur().getNom() + " vend " + marche.etals[i].getQuantité() + " "
+						+ marche.etals[i].getProduit() + "\n");
+			} else {
+				vide++;
+			}
 		}
+		chaine.append("Il reste " + vide + " étals non  utilisés dans le marché");
+		return chaine.toString();
 	}
 
 }
